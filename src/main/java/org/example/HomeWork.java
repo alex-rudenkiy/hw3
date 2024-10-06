@@ -1,6 +1,7 @@
 package org.example;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class HomeWork {
@@ -24,8 +25,28 @@ public class HomeWork {
      * Сигнатуру метода не меняем
      */
     public String findMaxSubstring(String str) {
-        //TODO реализовать метод
-        return null;
+        int max_length = 0;
+        String result = "";
+        
+        for (int i = 0; i < str.length(); i++) {
+            Set<Character> set = new HashSet<>();
+            
+            for (int j = i; j < str.length(); j++) {
+                if (!set.contains(str.charAt(j))) {
+                    set.add(str.charAt(j));
+                    
+                    int current_length = j - i + 1;
+                    if (current_length > max_length) {
+                        max_length = current_length;
+                        result = str.substring(i, j + 1);
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+        
+        return result;
     }
 
 
